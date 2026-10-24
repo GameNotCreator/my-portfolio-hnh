@@ -2,8 +2,9 @@ import french from "@/libs/fr";
 import documents from "@/libs/fr-documents";
 import photos from "@/libs/fr-photos";
 import journey from "@/libs/fr-journey";
+import articles from "@/libs/fr-articles";
 
-const dictionary = { ...french, ...documents, ...photos, ...journey };
+const dictionary = { ...french, ...documents, ...photos, ...journey, ...articles };
 
 export function translate(text, locale = "en") {
   if (locale !== "fr" || typeof text !== "string") return text;

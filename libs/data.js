@@ -60,6 +60,7 @@ export const images = {
 export const projectsData = [
   {
     id: "tunisianpass",
+    articleSlug: "tunisianpass",
     title: "TunisianPass",
     highlight: true,
     highlightDetails: [
@@ -69,9 +70,9 @@ export const projectsData = [
       },
     ],
     category: "website",
-    status: "First business",
+    status: "First business · Active development ended",
     description:
-      "TunisianPass was my first company in Tunisia. I co-founded it to help local restaurants and shops build their online presence, taking the idea from a website to a service businesses paid for.",
+      "My first company started with a QR-code prototype and a restaurant in our neighbourhood. We grew it into a customer engagement service used by more than 20 businesses.",
     role: "Co-founder · Website development",
     outcome: "More than 500 monthly users · Sold to more than 20 restaurants and shops",
     tags: ["Next.js", "MongoDB", "Tailwind", "SEO", "Figma"],
@@ -84,6 +85,7 @@ export const projectsData = [
   },
   {
     id: "welockin",
+    articleSlug: "welockin",
     title: "WeLockIn",
     highlight: true,
     highlightDetails: [
@@ -96,7 +98,7 @@ export const projectsData = [
     categories: ["desktop", "mobile"],
     status: "Desktop app · iOS on the App Store",
     description:
-      "I’m building WeLockIn, a desktop app that helps students stay focused during their work sessions. Its website introduces the app, and an iOS version is also available on the App Store.",
+      "Built from our own study habits, WeLockIn helps students commit to focused work on desktop and iOS. Research and feedback from more than 20 student beta testers have shaped the product.",
     role: "Product creation · Development",
     outcome: "Desktop focus app · iOS version available",
     tags: ["Student tools", "Focus", "Desktop app"],
@@ -111,6 +113,7 @@ export const projectsData = [
   },
   {
     id: "gustave-motors",
+    articleSlug: "gustave-motors",
     title: "Gustave Motors",
     subtitle: "Electric Solar Car",
     category: "engineering",
@@ -119,7 +122,7 @@ export const projectsData = [
     year: "2022–2023",
     status: "Engineering team project",
     description:
-      "Gustave Motors is the project I’m most attached to. In 2022, a few friends and I wanted to build a solar-electric car. That idea became our school’s engineering club, a team of around twenty students, and a project that taught me how to lead by doing.",
+      "A few friends, a solar-electric car and the engineering club we started to build it. My favourite project taught me to lead a team, make decisions and learn in the workshop.",
     role: "Club co-founder & president (2022–2025) · Project coordinator",
     outcome: "Winner · Projet X 2023 inter-zone high-school prize",
     tags: ["Team leadership", "3D modelling", "Electronics", "Solar energy"],
@@ -201,6 +204,7 @@ export const projectsData = [
   },
   {
     id: "a-bot",
+    articleSlug: "a-bot",
     title: "A-BOT",
     category: "engineering",
     highlight: false,

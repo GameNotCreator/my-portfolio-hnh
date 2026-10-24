@@ -1,12 +1,14 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const ActiveSectionContext = createContext(null);
 const sectionIds = ["home", "about", "projects", "skills", "life", "contact"];
 
 export default function ActiveSectionContextProvider({ children }) {
   const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
 
   useEffect(() => {
     let frame = null;
@@ -61,7 +63,7 @@ export default function ActiveSectionContextProvider({ children }) {
       document.removeEventListener("load", scheduleUpdate, true);
       resizeObserver?.disconnect();
     };
-  }, []);
+  }, [pathname]);
 
   const value = useMemo(() => ({ activeSection }), [activeSection]);
   return <ActiveSectionContext.Provider value={value}>{children}</ActiveSectionContext.Provider>;

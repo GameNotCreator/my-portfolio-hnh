@@ -11,6 +11,39 @@ The hero has a static warm background; short foreground animations and interacti
 feedback respect reduced motion. Cards stack on phones and tablets, with uncropped
 website captures in linked browser frames.
 
+## Project articles (24 October 2026)
+
+Project cards are now compact introductions. The three owner-selected projects
+(TunisianPass, WeLockIn and Gustave Motors) use a small gold star badge in every
+filter, with neutral card borders. Personal stories and photo galleries live on
+dedicated pages, replacing the inline Gustave journey slider and engineering
+disclosures. A-BOT has its own article but remains outside Highlights.
+
+- English: `/projects/tunisianpass`, `/projects/welockin`,
+  `/projects/gustave-motors`, `/projects/a-bot`.
+- French: the same paths prefixed with `/fr`.
+- `libs/articles/tunisianpass.js` and `welockin.js`: first-person EN/FR stories.
+- `libs/project-articles.js`: engineering stories, media placement and metadata.
+- `components/sections/ProjectArticle.js` and its CSS module: shared article layout.
+- `articleSlug` in `libs/data.js`: connects a card to its article.
+
+The new stories follow the owner's dictated account. TunisianPass started in
+summer 2024; the first owner's reported 300 reviews are attributed to that owner,
+not presented as independently audited analytics. The legal company closed and
+active development ended while existing installations remain in use. No closure
+date, revenue, company legal name or currency-law explanation is invented.
+WeLockIn's 20+ student beta testers and four-person marketing team are owner-
+provided figures. Universities describe testers' study locations, not partners.
+Hard lock is described as a chosen commitment, within platform capabilities.
+
+The articles retain existing previews and engineering evidence. WeLockIn also
+uses the supplied schedule visual and development-log photo. Additional owner
+photos can be added to a section's `photos` array as `{ src, alt, caption, fit }`,
+with English and French descriptions. No placeholder images are published.
+Both language routes have their own canonical/hreflang and Article structured
+data, and are included in the sitemap. Navigation returns to the home sections;
+switching languages keeps the current article and anchor.
+
 ## Run locally
 
 ```bash

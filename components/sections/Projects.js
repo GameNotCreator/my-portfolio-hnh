@@ -64,8 +64,7 @@ export default function Projects() {
           {projectsData.map((project) => <ProjectCard key={project.id} {...localizeRecord(project, locale)}
             hidden={!visibleIndexes.has(project.id)}
             alternate={visibleIndexes.get(project.id) % 2 === 1}
-            expandedStory={activeCategory === "engineering"}
-            highlighted={activeCategory === "highlights" && Boolean(project.highlight)} />)}
+            highlighted={Boolean(project.highlight)} />)}
         </div>
         <Hackathons hidden={!showHackathons} />
       </m.div>

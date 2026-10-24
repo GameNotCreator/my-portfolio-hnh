@@ -1,31 +1,29 @@
 "use client";
 import { useLocale } from "@/libs/LocaleProvider";
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, ChevronDown, Code2, Globe, Sparkles } from "lucide-react";
-import ImageGallery from "@/components/elements/Images/ImageGallery";
-import ProjectCaseStudy from "@/components/elements/ProjectCaseStudy";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, ArrowUpRight, Code2, Globe, Star } from "lucide-react";
 import * as m from "framer-motion/m";
 import { useReducedMotion } from "framer-motion";
+import styles from "./ProjectCard.module.css";
 
-export default function ProjectCard({ id, title, subtitle, year, description, role, outcome, tags, imageUrl, imageAlt, imageFit, imagePosition, previewType, previewDomain, previewStack, link, status, appStoreLink, appStoreLabel = "App Store (iOS)", linkLabel, demoCredentials, sourceLinks = [], availability, highlightDetails = [], highlightLabel = "Selected project", story = [], gallery = [], caseStudy, expandedStory = false, highlighted = false, hidden = false, alternate = false }) {
+export default function ProjectCard({ id, title, subtitle, year, description, role, outcome, tags, imageUrl, imageAlt, imageFit, imagePosition, previewType, previewDomain, previewStack, link, status, appStoreLink, appStoreLabel = "App Store (iOS)", linkLabel, demoCredentials, sourceLinks = [], availability, highlightLabel = "Selected project", articleSlug, highlighted = false, hidden = false, alternate = false }) {
   const { locale, t } = useLocale();
   const reduceMotion = useReducedMotion();
   const isWebsite = previewType === "website" && Boolean(imageUrl);
   const previewWidth = imageUrl?.width || 1440;
   const previewHeight = imageUrl?.height || 1000;
   const websiteLabel = linkLabel || (appStoreLink ? "Website" : "View Project");
-  const hasStory = story.length > 0 || gallery.length > 0;
-  const useStoryOverview = highlighted && !caseStudy && highlightDetails.length === 0 && story.length > 0;
-  const selectedDetails = useStoryOverview ? story.slice(0, 1) : highlightDetails;
-  const buildDetails = useStoryOverview ? story.slice(1) : story;
+  const articleHref = articleSlug ? `${locale === "fr" ? "/fr" : ""}/projects/${articleSlug}` : null;
+  const storyLabel = locale === "fr" ? "Lire le récit" : "Read the story";
   const linkFeedback = reduceMotion ? {} : { whileHover: { scale: 1.025 }, whileTap: { scale: 0.98 } };
   return (
-    <m.article className={`project-card${alternate ? " is-alternate" : ""}${highlighted ? " project-card-highlight" : ""}${hasStory ? " has-story" : ""}`}
+    <m.article className={`project-card ${styles.card}${alternate ? " is-alternate" : ""}`}
       hidden={hidden}
       data-project-id={id}
       initial={reduceMotion ? false : { opacity: 0.8, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={highlighted && !reduceMotion ? { y: -4 } : undefined}
+      whileHover={highlighted && !reduceMotion ? { y: -3 } : undefined}
       viewport={{ once: true, amount: 0.12 }}
       transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}>
       <div className={`project-visual ${imageUrl ? "has-image" : ""} ${isWebsite ? "is-website" : ""}`}>
@@ -44,17 +42,14 @@ export default function ProjectCard({ id, title, subtitle, year, description, ro
         {!isWebsite && status && <span className="project-status">{status}</span>}
       </div>
       <div className="project-content">
-        {highlighted && <p className="project-highlight-label"><Sparkles size={14} aria-hidden="true" />{t(highlightLabel)}</p>}
+        {highlighted && <p className={styles.selectionBadge}><Star size={14} strokeWidth={1.8} fill="currentColor" aria-hidden="true" />{t(highlightLabel)}</p>}
         <h3>{title}</h3>
         {subtitle && <p className="project-subtitle">{subtitle}</p>}
-        {hasStory && year && <p className="project-year">{year}</p>}
+        {year && <p className="project-year">{year}</p>}
         {isWebsite && status && <p className="project-preview-status">{status}</p>}
         <p className="project-description">{description}</p>
         {role && <p className="project-role"><span>{t("My role")}</span>{role}</p>}
         {outcome && <p className="project-outcome">{outcome}</p>}
-        {highlighted && selectedDetails.length > 0 && <dl className="project-highlight-details">
-          {selectedDetails.map(({ label, description: detail }) => <div key={label}><dt>{label}</dt><dd>{detail}</dd></div>)}
-        </dl>}
         <ul className="project-tags" aria-label={`${title} · ${t("details")}`}>{tags.map((tag) => <li key={tag}>{t(tag)}</li>)}</ul>
         {demoCredentials && <aside className="project-demo" aria-label={`${title} · ${t("Demo login")}`}>
           <p className="project-demo-title">{t("Demo login")}</p>
@@ -65,21 +60,13 @@ export default function ProjectCard({ id, title, subtitle, year, description, ro
           <p className="project-demo-note">{t("Shared demo account. Use fictional data only.")}</p>
         </aside>}
         {(availability || appStoreLink) && <p className="project-availability">{t(availability || "Available on iOS. Android is not available yet.")}</p>}
-        {(link || appStoreLink || sourceLinks.length > 0) && <div className="project-links">
-          {appStoreLink && <m.a href={appStoreLink} target="_blank" rel="noopener noreferrer" className="button button-primary" aria-label={`${t(appStoreLabel)}: ${title} (${t("opens in a new tab")})`} {...linkFeedback} transition={{ duration: 0.15 }}>{t(appStoreLabel)} <ArrowUpRight size={16} aria-hidden="true" /></m.a>}
-          {link && <m.a href={link} target="_blank" rel="noopener noreferrer" className={`button ${appStoreLink ? "button-secondary" : "button-primary"}`} aria-label={`${t(websiteLabel)}: ${title} (${t("opens in a new tab")})`} {...linkFeedback} transition={{ duration: 0.15 }}>{t(websiteLabel)} <ArrowUpRight size={16} aria-hidden="true" /></m.a>}
+        {(articleHref || link || appStoreLink || sourceLinks.length > 0) && <div className="project-links">
+          {articleHref && <Link href={articleHref} className={`button button-primary ${styles.storyLink}`} aria-label={`${storyLabel} : ${title}`}>{storyLabel}<ArrowRight size={16} aria-hidden="true" /></Link>}
+          {appStoreLink && <m.a href={appStoreLink} target="_blank" rel="noopener noreferrer" className={`button ${articleHref ? "button-secondary" : "button-primary"}`} aria-label={`${t(appStoreLabel)}: ${title} (${t("opens in a new tab")})`} {...linkFeedback} transition={{ duration: 0.15 }}>{t(appStoreLabel)} <ArrowUpRight size={16} aria-hidden="true" /></m.a>}
+          {link && <m.a href={link} target="_blank" rel="noopener noreferrer" className={`button ${articleHref || appStoreLink ? "button-secondary" : "button-primary"}`} aria-label={`${t(websiteLabel)}: ${title} (${t("opens in a new tab")})`} {...linkFeedback} transition={{ duration: 0.15 }}>{t(websiteLabel)} <ArrowUpRight size={16} aria-hidden="true" /></m.a>}
           {sourceLinks.map(({ label, href }) => <m.a key={href} href={href} target="_blank" rel="noopener noreferrer" className="button button-secondary" aria-label={`${t(label)}: ${title} (${t("opens in a new tab")})`} {...linkFeedback} transition={{ duration: 0.15 }}>{t(label)}<ArrowUpRight size={16} aria-hidden="true" /></m.a>)}
         </div>}
       </div>
-      {caseStudy ? <ProjectCaseStudy id={id} title={title} story={story} gallery={gallery} caseStudy={caseStudy} articleLink={link} /> : hasStory && <details className="project-story" open={expandedStory}>
-        <summary><span>{t("Build story & photos")}{gallery.length > 0 && <span className="project-story-count">{gallery.length} {t("photos")}</span>}</span><ChevronDown size={18} aria-hidden="true" /></summary>
-        <div className="project-story-content">
-          {buildDetails.length > 0 && <dl className="project-build-details">
-            {buildDetails.map(({ label, description: detail }) => <div key={label}><dt>{label}</dt><dd>{detail}</dd></div>)}
-          </dl>}
-          {gallery.length > 0 && <ImageGallery galleries={{ [title]: gallery }} showCategoryTitles={false} className="project-media-gallery" />}
-        </div>
-      </details>}
     </m.article>
   );
 }

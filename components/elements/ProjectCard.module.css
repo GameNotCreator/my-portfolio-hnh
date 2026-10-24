@@ -1,0 +1,38 @@
+.card {
+  box-shadow: 0 4px 16px #00000004;
+}
+
+.selectionBadge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 7px;
+  max-width: 100%;
+  margin: 0 0 18px;
+  padding: 7px 11px;
+  border: 1px solid color-mix(in srgb, var(--highlight-border) 32%, transparent);
+  border-radius: 999px;
+  background: var(--highlight-tint);
+  color: var(--highlight-ink);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .035em;
+}
+
+.selectionBadge svg {
+  flex-shrink: 0;
+}
+
+.storyLink svg {
+  transition: transform 180ms ease;
+}
+
+.storyLink:hover svg {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .storyLink svg { transition: none; }
+  .storyLink:hover svg { transform: none; }
+}

@@ -106,14 +106,6 @@ button:disabled { cursor: wait; opacity: 0.6; }
 .project-results > .hackathons-block:first-child { margin-top: 0; }
 .project-list { width: 100%; max-width: 70rem; display: flex; flex-direction: column; gap: 40px; }
 .project-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; background: var(--background); }
-.project-card-highlight { border-color: var(--highlight-border); box-shadow: 0 0 0 1px var(--highlight-glow), 0 8px 28px var(--highlight-glow); transition: box-shadow 280ms ease; }
-.project-card-highlight:hover, .project-card-highlight:focus-within { box-shadow: 0 0 0 1px var(--highlight-border), 0 14px 38px var(--highlight-glow); }
-.project-card-highlight .project-visual { background: var(--highlight-tint); }
-.project-highlight-label { display: inline-flex; align-items: center; gap: 7px; margin: 0 0 16px; color: var(--highlight-ink); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-.project-highlight-details { margin: 0 0 24px; padding: 0 0 0 16px; border-left: 2px solid var(--highlight-border); }
-.project-highlight-details > div + div { margin-top: 16px; }
-.project-highlight-details dt { margin-bottom: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--highlight-ink); }
-.project-highlight-details dd { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
 .project-visual { position: relative; width: 100%; min-height: 220px; background: var(--surface); overflow: hidden; display: flex; justify-content: center; align-items: center; }
 .project-visual.is-website { min-height: 0; padding: 20px; }
 .project-browser { display: block; width: 100%; min-width: 0; overflow: hidden; border-radius: 8px; background: #ffffff; color: #171717; text-decoration: none; box-shadow: 0 12px 24px #00000018; transition: box-shadow 200ms ease; }
@@ -160,7 +152,6 @@ button:disabled { cursor: wait; opacity: 0.6; }
 .project-story > summary::-webkit-details-marker { display: none; }
 .project-story > summary > svg { flex-shrink: 0; transition: transform 180ms ease; }
 .project-story[open] > summary > svg { transform: rotate(180deg); }
-.project-card-highlight .project-story > summary { background: var(--highlight-tint); }
 .project-story-count { display: inline-block; margin-left: 12px; color: var(--muted); font-size: 12px; font-weight: 400; }
 .project-story-content { padding: 24px; }
 .project-build-details { display: grid; gap: 24px; margin: 0; }
