@@ -13,8 +13,8 @@ Built with **Next.js 15**, **React 19**, **Tailwind CSS** and **Framer Motion**.
 ## Run locally
 
 ```bash
-git clone https://github.com/GameNotCreator/me.git
-cd me
+git clone https://github.com/GameNotCreator/my-portfolio-hnh.git
+cd my-portfolio-hnh
 npm ci
 npm run dev
 ```
